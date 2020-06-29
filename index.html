@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+        
+
+
+
+<script>
+
+       if("geolocation" in navigator){
+
+       navigator.geolocation.getCurrentPosition(function(position) { {
+             enableHighAcurracy: false;
+       };
+       
+        lat1 = position.coords.latitude;
+        lon1 = position.coords.longitude;
+  
+    console.log(lat1);// latitude do usuário
+    console.log(lon1);// longitude do usuário
+
+      lat2 = -29.6247123;   //Parobé
+      lon2 = -50.8325299;
+
+      lat0= -29.5156432;    //Três Coroas
+      lon0 = -50.7762835;
+
+      Lat = -29.6491311;   //Taquara
+      Lon  = -50.7822142; 
+
+      lat3 = -29.5715245;   //Igrejinha
+      lon3 = -50.7923226;
+
+       unit = "K";
+       city='parobe';
+       
+       function distance(lat1, lon1, lat2, lon2, unit) {
+	if ((lat1 == lat2) && (lon1 == lon2)) {
+		return 0;
+	}
+	else {
+		var radlat1 = Math.PI * lat1/180;
+		var radlat2 = Math.PI * lat2/180;
+		var theta = lon1-lon2;
+		var radtheta = Math.PI * theta/180;
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		if (dist > 1) {
+			dist = 1;
+		}
+		dist = Math.acos(dist);
+		dist = dist * 180/Math.PI;
+		dist = dist * 60 * 1.1515;
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist;
+	}
+}
+//With the latitude and longitude from the user and the point other point you have the distance in KM our miles between point 1 and point 2
+
+/*Com a latitude e Longitude do usuário e outra posição geográfica é feito um calculo da distância entre o ponto A e o ponto B, 
+por exemplo a distância entre a localização do usuário com cada ponto cadastrado no programa*/
+
+
+    var distanceParobe = distance(lat1, lon1, lat2, lon2, unit);
+
+    var distanceTaquara = distance(lat1, lon1, Lat, Lon, unit);
+    
+    var distanceTc =distance(lat1, lon1, lat0, lon0, unit);
+
+    var distanceIgre = distance(lat1, lon1, lat3, lon3, unit);
+
+
+
+    var array_distance = [distanceParobe, distanceTaquara, distanceTc, distanceIgre];
+
+    var min = Math.min(...array_distance);
+
+    if(min==distanceParobe){
+
+        console.log('CIDADE MAIS PRÓXIMA É PAROBÉ');
+
+    }
+
+    if(min==distanceTaquara){
+
+    console.log('CIDADE MAIS PRÓXIMA É TAQUARA');
+
+}
+    if(min==distanceTc){
+
+    console.log('CIDADE MAIS PRÓXIMA É TRÊS COROAS');
+
+}
+
+
+    if(min==distanceIgre){
+
+    console.log('CIDADE MAIS PRÓXIMA É IGREJINHA');
+
+}
+    else{
+
+        alert('erro, recarregue a página');
+
+    }
+
+//testagem para definir localização mais próxima entre cidades cadastradas (ta tudo retornando no console a parte de interface não ta completa ainda)
+
+ 
+
+
+
+
+     
+
+    });
+
+       
+    }
+    else{
+
+        alert('geolocation not suported');
+        alert('Por favor, habilite a localização do seu dispositivo');
+    }
+
+
+
+
+ </script>
+
+</body>
+
+</html>
