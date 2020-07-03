@@ -3,7 +3,7 @@ Ambiente de desenvolvimento do meu TCC
 
 Etapa de desenvolvimento do ambiente do meu trabalho de conclusão de curso
 
-Trata-se da parte de calcular a distância do pontos e retornar o que seria o ponto de coleta de lixo mais próximo da localização do usuário e assim retornar um endereço ao usuário.
+Trata-se da parte de calcular a distância do pontos e retornar o que seria o ponto de coleta de lixo mais próximo da localização do usuário e assim retornar um endereço ao usuário. (ele automáticamente vai solicitar sua localização e vai retornar a cidade mais próxima no >console<)
 
 Desenvolvido por Diogo de Assis de Souza Ramos
 
